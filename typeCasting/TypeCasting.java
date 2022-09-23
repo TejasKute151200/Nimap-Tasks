@@ -12,5 +12,10 @@ public class TypeCasting
 	double d =9;
 	int e= (int) d; //conversion casting
 	System.out.println("Conversion Casting >>> "+ e);
+		
+	String f="Tejas";  
+	char c=f.charAt(0); //String to char
+	System.out.println("String to char >>> "+ f);	
+	
 	}	
 }
