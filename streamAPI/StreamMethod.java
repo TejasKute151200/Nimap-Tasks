@@ -1,6 +1,8 @@
 package corejava.streamAPI;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -25,28 +27,91 @@ public class StreamMethod {
 		List<String> sName= names.stream().filter(a->a.startsWith("S")).collect(Collectors.toList());
 		System.out.println("Start With S Element Words Will Print >>> "+"\n "+sName);
 		
+		System.out.println(" ");
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println(" ");
+		
 		// map()
 		List<Integer> numbers = List.of(23,34,45,56,67,78,89,65);
 		List<Integer> newNum = numbers.stream().map(b-> b*b).collect(Collectors.toList());
 		System.out.println("Square of the Given Numbers Are : "+ newNum);
+		
+		System.out.println(" ");
+		
+		List<String>mName =names.stream().map(c->c+"-"+c).collect(Collectors.toList());
+		System.out.println("        "+mName);
+		
+		
+		System.out.println(" ");
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println(" ");
 		
 		// filter + forEach
 		names.stream().filter(a->a.startsWith("S")).forEach(a-> System.out.print(a+" "));
 		
 		System.out.println(" ");
 		
+		System.out.println(" ");
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println(" ");
+		
+		// map + forEach
+		numbers.stream().map(b-> b*b).forEach(b->System.out.println(b+" "));
+		
+		System.out.println(" ");
+		
+		System.out.println(" ");
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println(" ");
+		
 		// Direct iteration By Using Double Colon Operator( method reference operator ) 
-		names.stream().forEach(System.out::println);
+		names.stream().forEach(System.out::println); // note: r&d on this topic
+		
+		System.out.println(" ");
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println(" ");
 		
 		// Sorting
 		numbers.stream().sorted().forEach(f-> System.out.println(f));
+		
+		System.out.println(" ");
 		
 		Integer i = numbers.stream().min((x,y)->x.compareTo(y)).get();  // For Min 
 		System.out.println("Min >>> "+i);
 		
 		Integer j = numbers.stream().max((x,y)->x.compareTo(y)).get();  // For Max 
-		System.out.println("Max >>> "+j);
+		System.out.println("Max >>> "+j);	
 		
+		System.out.println(" ");
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println(" "); 
 		
+		// peek
+		List<Integer> newNumbers = numbers.stream().filter(d->d%2==0).map(d->d+d).peek(System.out::println).collect(Collectors.toList());
+		
+		System.out.println(" ");
+		List<Integer> newNum2= newNumbers.stream().collect(Collectors.toList());
+		System.out.println(newNum2);
+		
+		System.out.println(" ");
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println(" "); 
+		
+		// Get Unique Elements
+		List<Integer> list = Arrays.asList(1, 1, 2, 3, 3, 4, 5, 5); 
+		  
+        System.out.print("The Distinct Elements Are >>> "); 
+  
+		        // Displaying the distinct elements in the list 
+		        	// using Stream.distinct() method 
+        list.stream().distinct().forEach(System.out::print); 
+        
+        System.out.println("\n");
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println(" "); 
+		
+		// Reduce // Not Completed
+		List<Integer> newList =list.stream().reduce((element1, element5)-> element1 + element5);
+		System.out.println(" Sum of Numbers >>> "+ newList);
 	}
 }
