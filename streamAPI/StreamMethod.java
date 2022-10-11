@@ -2,7 +2,9 @@ package corejava.streamAPI;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -110,8 +112,32 @@ public class StreamMethod {
 		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++");
 		System.out.println(" "); 
 		
-		// Reduce // Not Completed
-		List<Integer> newList =list.stream().reduce((element1, element5)-> element1 + element5);
-		System.out.println(" Sum of Numbers >>> "+ newList);
+		// Reduce 
+		int newList =list.stream().reduce(0,(a,b) -> a+b);
+		System.out.println("Addition the List of Elements >>> "+newList);
+		
+		System.out.println(" ");
+		
+		int newList2= list.stream().reduce(1,(a,b)->a-b);
+		System.out.println("Sub the List of Elements >>> "+newList2);
+		
+		System.out.println(" ");
+		
+		int newList3= list.stream().reduce(1,(a,b)->a*b); 
+		System.out.println("Multiply the List of Elements >>> "+newList3);
+		
+		System.out.println(" ");
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println(" "); 
+		
+		// Grouping 
+        List<String> groupMethod = Arrays.asList("Tejas", "Sanjay", "Kute");
+ 
+        				// Collect the list as map
+        				// by groupingBy() method
+        Map <String, Long> result = groupMethod.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+ 
+       
+        System.out.println(result);
 	}
 }
