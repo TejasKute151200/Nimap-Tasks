@@ -23,7 +23,10 @@ public class StreamMethod {
 		 * map(function) - it means function return the value
 		 *  // each element Operation
 		 */
-		
+		System.out.println(" ");
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println(" "); 
+			
 		// filter()
 		List<String> names= List.of("Tejas","Sanjay","Kute","Savitra");
 		List<String> sName= names.stream().filter(a->a.startsWith("S")).collect(Collectors.toList());
@@ -131,7 +134,7 @@ public class StreamMethod {
 		System.out.println(" "); 
 		
 		// Grouping 
-        List<String> groupMethod = Arrays.asList("Tejas", "Sanjay", "Kute");
+        List<String> groupMethod = Arrays.asList("Tejas", "Sanjay", "Kute","Tejas");
  
         				// Collect the list as map
         				// by groupingBy() method
@@ -139,5 +142,32 @@ public class StreamMethod {
  
        
         System.out.println(result);
+        
+        System.out.println(" ");
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println(" "); 
+        
+		// Partioning
+        Stream<Integer> p = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10); 
+        Stream<Integer> p2 = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10); 
+		        // using Collectors partitioningBy() 
+		        // method to split the stream of elements into 
+		        // 2 parts, greater than 3 and less than 3. 
+        Map<Boolean, List<Integer>> map = p.collect( Collectors.partitioningBy(num -> num > 3)); 
+  
+		        // Displaying the result as a map 
+		        // true if greater than 3, false otherwise 
+        System.out.println("Elements in stream " + "partitioned by " + "less than equal to 3: \n" + map);
+        
+        System.out.println(" ");
+        
+        // 2nd Partioning 
+        Map<Boolean, Long> map2 = p2.collect(Collectors.partitioningBy(num -> (num < 3), Collectors.counting()));
+        System.out.println("Elements in stream " + "partitioned by " + "less than equal to 3: \n" + map2);
+        
+        System.out.println(" ");
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println(" "); 
+ 
 	}
 }
