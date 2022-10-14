@@ -5,12 +5,12 @@ public class ThreadExample {
 		System.out.println("<<<<>>>> START <<<<>>>>");
 		
 		int a= 26+24;
-		System.out.println(" Sum of Numbers are "+a);
+		System.out.println(" Sum of Numbers are "+ a);
 		
 		//Thread..
 		Thread t= Thread.currentThread();
 		String tname=t.getName();
-		System.out.println(" Our Thread Name is "+tname);
+		System.out.println(" Our Thread Name is "+ tname);
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
