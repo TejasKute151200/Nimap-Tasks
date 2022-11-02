@@ -27,9 +27,19 @@ public class MyController {
 		return service.findAll();
 	}
 	
-	@GetMapping("/get/{id}")
+	@GetMapping("/get/id/{id}")
 	public Optional<Student> getById(@PathVariable Long id) {
 		return service.findById(id);
+	}
+	
+	@GetMapping("/get/name/{name}")
+	public Optional<Student> getByName(@PathVariable String name ){
+		return service.findByName(name);
+	}
+	
+	@GetMapping("/get/address/{name}")
+	public Optional<Student> getByAddress(@PathVariable String address){
+		return service.findByAddress(address);
 	}
 
 	@PostMapping("/save")
@@ -44,7 +54,9 @@ public class MyController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public void deleteStudent(@PathVariable Long id) {
+	public String deleteStudent(@PathVariable Long id) {
 		 service.deleteById(id);
+		 return "Id number "+id+" Deleted";
+		 
 	}
 }

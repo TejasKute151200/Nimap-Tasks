@@ -10,12 +10,13 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String name;
+	private String address;
 
-
-	public Student(long id, String name) {
+	public Student(long id, String name,String address) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.address= address;
 	}
 	
 	public Student() {
@@ -34,9 +35,18 @@ public class Student {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address=address;
+	}
+	
+	
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", name=" + name + "]";
+		return "Student [id=" + id + ", name=" + name + ", address=" + address + "]";
 	}
 
 }

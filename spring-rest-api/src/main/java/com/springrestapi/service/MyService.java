@@ -15,14 +15,14 @@ public interface MyService {
 
 	public Optional<Student> findById(Long id); 
 	
+	public Optional<Student> findByName(String name);
+	
+	public Optional<Student> findByAddress(String address);
+	
 	public Student saveStudent(Student s);
 
 	public Student updateStudent(Student s);
 	
 	public void deleteById(Long id);
-	
-	
-	
-	
 
 }

@@ -30,7 +30,7 @@ public class MyServiceImpl implements MyService {
 	public Student saveStudent(Student s) {
 		Student newStudent = new Student();
 		newStudent.setName(s.getName());
-		return repo.save(newStudent);
+		return repo.save(s);
 	}
 
 	@Override
@@ -43,6 +43,18 @@ public class MyServiceImpl implements MyService {
 
 	@Override
 	public void deleteById(Long id) {
-			repo.deleteById(id);		
+			 repo.deleteById(id);
+	}
+
+	@Override
+	public Optional<Student> findByName(String name) {
+		
+		return repo.findByName(name);
+	}
+
+	@Override
+	public Optional<Student> findByAddress(String address) {
+		
+		return repo.findByAddress(address);
 	}
 }
