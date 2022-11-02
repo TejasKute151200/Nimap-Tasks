@@ -7,8 +7,14 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">    
     
-   <!--  this is our beans -->    
-    <bean class="com.springcore.Student" name="student1" p:studentId="96" p:studentName="Tejas" p:address="Mumbai"/>
-    
+  <bean class="com.springcore.ref.B" name="bref" >
+  <property name="y" value="90" />
+  </bean>
 
+	<bean class="com.springcore.ref.A" name="aref">
+	<property name="x" value="12" />
+	<property name="ob" >
+		<ref bean ="bref"/>
+	</property>
+	</bean>
 </beans>
