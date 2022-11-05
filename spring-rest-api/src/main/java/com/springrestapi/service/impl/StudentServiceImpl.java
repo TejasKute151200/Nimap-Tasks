@@ -1,9 +1,13 @@
 package com.springrestapi.service.impl;
 
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.springrestapi.entity.Student;
@@ -17,12 +21,24 @@ public class StudentServiceImpl implements StudentService {
 	private StudentRepo repo;
 
 	@Override
+	public List<Student> findAllByPage(Integer pageNumber, Integer pageSize) {
+		
+		Pageable p = PageRequest.of(pageNumber-1, pageSize);
+		 
+		 Page<Student> page = repo.findAll(p);
+		 
+		 List<Student> list = page.getContent() ;
+		
+		return list;
+	}
+	
+	@Override
 	public List<Student> findAll() {
 		return repo.findAll();
 	}
-
+	
 	@Override
-	public Optional<Student> findById(Long id) {
+	public Optional<Student> findById(long id) {
 
 		return repo.findById(id);
 	}
@@ -35,26 +51,13 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public Student updateStudent(Student s) {
-		Student s1 = repo.findById(s.getId()).orElseThrow();
-		s1.setName(s.getName());
-		return repo.save(s1);
+	public Optional<Student> updateStudent(long id) {
+		Optional<Student> student = repo.findById(id);
+		return student;
 	}
 
 	@Override
-	public void deleteById(Long id) {
+	public void deleteById(long id) {
 			 repo.deleteById(id);
 	}
-
-//	@Override
-//	public Optional<Student> findByName(String name) {
-//		
-//		return repo.findByName(name);
-//	}
-//
-//	@Override
-//	public Optional<Student> findByAddress(String address) {
-//		
-//		return repo.findByAddress(address);
-//	}
 }

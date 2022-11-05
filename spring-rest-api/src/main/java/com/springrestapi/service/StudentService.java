@@ -1,5 +1,6 @@
 package com.springrestapi.service;
 
+import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,12 +14,16 @@ public interface StudentService {
 
 	public List<Student> findAll();
 
-	public Optional<Student> findById(Long id); 
+	public Optional<Student> findById(long id); 
 	
 	public Student saveStudent(Student s);
 
-	public Student updateStudent(Student s);
+	public Optional<Student> updateStudent(long id);
 	
-	public void deleteById(Long id);
+	public void deleteById(long id);
+
+//	public List<Student> findAllByPage();
+
+	public List<Student> findAllByPage(Integer pageNumber, Integer pageSize);
 
 }
