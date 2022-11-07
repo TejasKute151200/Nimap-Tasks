@@ -1,0 +1,132 @@
+
+-- 1 --
+
+USE sql_store;
+
+SELECT * FROM customers;
+-- FROM customers
+-- WHERE customer
+-- ORDER BY first_name
+
+
+-- 2 --
+
+SELECT  first_name,
+		last_name, 
+        points, 
+        points +10, 
+        points * 10 + 100, 
+        points + 10 * 100, 
+        ( points + 10 ) * 100,
+        ( points + 10 ) * 100 AS discount_factor,
+        ( points + 10 ) * 100 AS 'discount factor'
+FROM customers;
+
+UPDATE `sql_store`.`customers` SET `state` = 'VA' WHERE (`customer_id` = '1');
+
+SELECT state
+FROM customers;
+
+SELECT DISTINCT state  -- Distinct is use for remove Duplicate Value  --
+FROM customers;
+
+
+-- 3 --
+
+SELECT * 
+FROM Customers;
+-- WHERE points > 3000
+-- WHERE state = 'va'
+-- WHERE state != 'va'
+-- WHERE state <> 'va'
+-- WHERE birth_date > '1990-01-01'
+
+
+-- 4 --
+
+SELECT * 
+FROM Customers;
+-- WHERE birth_date > '1990-01-01' AND points > 1000 -- Both Condition Should Be True
+-- WHERE birth_date > '1990-01-01' OR points > 1000 -- AtLeast 1 Condition Must Be True
+-- WHERE birth_date > '1990-01-01' OR points > 1000 AND state = 'va'
+-- WHERE birth_date > '1990-01-01' OR ( points > 1000 AND state = 'va' )
+-- WHERE NOT ( birth_date > '1990-01-01' OR points > 1000 ) --it is equal to -- WHERE ( birth_date <= '1990-01-01' AND points < 1000 ) 
+
+
+-- 5 --
+
+SELECT *
+FROM Customers;
+-- WHERE state = 'VA' OR state = 'GA' OR state = 'FL'
+-- WHERE state IN ('VA','GA','FL') -- Same Result -- WHERE state = 'VA' OR state = 'GA' OR state = 'FL'
+-- WHERE state NOT IN ('VA','GA','FL')
+
+
+-- 6 --
+
+SELECT *
+FROM customers;
+-- WHERE points >= 1000 AND points <=3000
+-- WHERE points BETWEEN 1000 AND 3000
+
+
+-- 7 --
+
+SELECT *
+FROM customers ;
+-- WHERE last_name LIKE 'b%' -- Starts With Given Letter or Word 
+-- WHERE last_name LIKE '%y' -- End With Given Letter or Word
+-- WHERE last_name LIKE 'brush%'
+-- WHERE last_name LIKE '%b%' 
+-- WHERE last_name LIKE '_____y'
+-- WHERE last_name LIKE 'b____y'
+
+-- % any number of characters 
+-- _ single character 
+
+
+-- 8 -- 
+
+SELECT *
+FROM customers 
+-- WHERE last_name REGEXP 'field'
+-- WHERE last_name REGEXP '^B'  -- ^ -- Starts With Given Letter or Word
+-- WHERE last_name REGEXP 'field$' -- $ -- End With Given Letter or Word
+-- WHERE last_name REGEXP 'field|mac' -- Find 2 or More Results At a Time
+-- WHERE last_name REGEXP 'field|mac|rose'
+-- WHERE last_name REGEXP '^field|mac|rose' 
+-- WHERE last_name REGEXP 'field$|mac|rose'
+-- WHERE last_name REGEXP 'e'
+-- WHERE last_name REGEXP '[gim]e' -- Before e 
+-- WHERE last_name REGEXP 'e[lyi]' -- After e
+WHERE last_name REGEXP '[a-h]e';
+-- ^ - Beginning
+-- $ - end 
+-- | - logical or 
+-- [abcd] - return only words which is match with letters in that List
+-- [a-f] - range 
+
+
+-- 9 -- 
+
+SELECT *
+FROM customers
+-- WHERE phone IS NULL
+WHERE phone IS  NOT NULL; 
+
+
+-- 10 --
+
+SELECT * 
+FROM customers 
+-- ORDER BY first_name  -- By Default Give You ASCENDING Order
+-- ORDER BY first_name DESC -- its Give You Descending Order
+ORDER BY state, first_name;
+
+
+-- 11 --addressaddress
+
+SELECT * 
+FROM customers 
+-- LIMIT 3
+LIMIT  4,5 -- LIMIT (offset),Limit DATA

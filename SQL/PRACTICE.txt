@@ -1,0 +1,93 @@
+
+-- #1 . EXERCISE --
+-- 1. Return All the Products
+-- 2. name
+-- 3. unit price
+-- 4. new price ( unit price * 1.1 )
+
+SELECT name,
+	   unit_price,
+       unit_price * 1.1
+FROM sql_store.products;
+
+-- #2 . EXERCISE --
+-- Get the Orders Placed This Year --
+
+SELECT * 
+FROM orders 
+WHERE order_date >= '2019-01-01';
+
+-- #3 . EXERCISE --
+-- From the Order_items table, get the items 
+-- for order #6
+-- where the total price is greater than 30
+
+SELECT *
+FROM order_items
+WHERE order_id = 6 AND ( unit_price * quantity > 30 );
+
+-- #4 . EXERCISE --
+-- Return products with 
+-- Quantity in Stock equal to 49, 38, 72
+
+SELECT * 
+FROM products
+WHERE quantity_in_stock IN ( 49, 38, 72 );
+
+-- #5 . EXERCISE --
+-- Return customers born 
+-- between 1/1/1990 and 1/1/2000
+
+SELECT *
+FROM customers 
+WHERE birth_date 
+BETWEEN '1990-01-01' AND '2000-01-01';
+
+-- #6 . EXERCISE --
+-- Get the customers whose 
+-- addresses contain TRAIL or AVENUE
+-- phone numbers end with 9 
+
+SELECT *
+FROM customers 
+-- WHERE address LIKE '%TRAIL%' OR 
+-- 	  address LIKE'%AVENUET%' 
+--    AND phone LIKE '%9';
+      WHERE phone NOT LIKE '%9';
+            
+-- #7 . EXERCISE --
+-- Get the customers whose
+-- 1. first names are ELKA or AMBUR 
+-- 2. last names end with EY or ON 
+-- 3. last names start with MY or contains SE
+-- 4. last names contain B followed by R or U
+
+SELECT *
+FROM customers;
+-- WHERE first_name REGEXP 'ELKA|AMBUR'
+-- WHERE last_name REGEXP 'EY$|ON$'
+-- WHERE last_name REGEXP '^MY|SE'
+-- WHERE last_name REGEXP 'B[RU]'
+
+
+-- #8 . EXERCISE --
+-- GEt the Orders That Are Not Shipped 
+
+SELECT *
+FROM orders
+WHERE shipper_id IS NULL;
+
+-- #9 . EXERCISE --
+SELECT * , quantity * unit_price AS Total_Price
+FROM order_items
+WHERE order_id = 2
+-- ORDER BY quantity * unit_price DESC;
+ORDER BY Total_Price DESC;
+
+-- #10 . EXERCISE --
+-- Get the Top 3 Loyal Customers
+
+SELECT *
+FROM customers
+ORDER BY points DESC
+LIMIT 3
