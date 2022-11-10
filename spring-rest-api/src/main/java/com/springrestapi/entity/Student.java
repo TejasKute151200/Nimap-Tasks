@@ -5,20 +5,23 @@ import javax.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name="student")
+@Table(name = "student")
 @Where(clause = "is_active=true")
 @SQLDelete(sql = "UPDATE student SET is_active=false WHERE id=?")
 public class Student {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
-	@Column(name="student_name")
+
+	@Column(name = "student_name")
 	private String name;
-	
+
 	@Column(name = "is_active")
+	@JsonIgnore
 	private Boolean isActive = true;
 
 	public Student(long id, String name, Boolean isActive) {
@@ -30,7 +33,6 @@ public class Student {
 
 	public Student() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public long getId() {
