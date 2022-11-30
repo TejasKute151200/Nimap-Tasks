@@ -1,0 +1,1017 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2016
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use learn;
+Database changed
+mysql> create table EmployeeDetails(EmpId int pk, FullName varchar,ManagerId,DateOfJoining date, City varchar);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'pk, FullName varchar,ManagerId,DateOfJoining date, City varchar)' at line 1
+mysql> create table EmployeeDetails(EmpId int primary, FullName varchar,ManagerId,DateOfJoining date, City varchar);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', FullName varchar,ManagerId,DateOfJoining date, City varchar)' at line 1
+mysql> create table EmployeeDetails(EmpId int primary, FullName varchar(50),ManagerId int,DateOfJoining date, City varchar(50));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', FullName varchar(50),ManagerId int,DateOfJoining date, City varchar(50))' at line 1
+mysql> create table EmployeeDetails(EmpId int primarykey,FullName varchar(50),ManagerId int,DateOfJoining date, City varchar(50));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primarykey,FullName varchar(50),ManagerId int,DateOfJoining date, City varchar(5' at line 1
+mysql> create table EmployeeDetails(EmpId int primary,FullName varchar(255),ManagerId int,DateOfJoining date, City varchar(50));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',FullName varchar(255),ManagerId int,DateOfJoining date, City varchar(50))' at line 1
+mysql> create table EmployeeDetails(EmpId int primarykey,FullName varchar(50),ManagerId int,DateOfJoining date, City varchar(255));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primarykey,FullName varchar(50),ManagerId int,DateOfJoining date, City varchar(2' at line 1
+mysql> create table EmployeeDetails(EmpId int primary,FullName varchar(255),ManagerId int,DateOfJoining date, City varchar(255));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',FullName varchar(255),ManagerId int,DateOfJoining date, City varchar(255))' at line 1
+mysql> create table EmployeeDetails(EmpId int primary,FullName varchar(255),ManagerId int,DateOfJoining date, City varchar(255));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',FullName varchar(255),ManagerId int,DateOfJoining date, City varchar(255))' at line 1
+mysql> create table EmployeeDetails(EmpId int primary,FullName varchar(255),ManagerId int,DateOfJoining date, City varchar(255))
+    -> create table EmployeeDetails(EmpId int primary,FullName varchar(255),ManagerId int,DateOfJoining date, City varchar(255));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',FullName varchar(255),ManagerId int,DateOfJoining date, City varchar(255))
+crea' at line 1
+mysql> create table EmployeeDetails(
+    -> EmpId int primary,
+    -> FullName varchar(255),
+    -> ManagerId int,
+    -> DateOfJoining date,
+    -> City varchar(255);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+FullName varchar(255),
+ManagerId int,
+DateOfJoining date,
+City varchar(255)' at line 2
+mysql> create table EmployeeDetails(
+    -> EmpId int primary,
+    -> EmpId int,
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+EmpId int,' at line 2
+mysql> create table EmployeeDetails(
+    -> EmpId int,
+    -> FullName varchar(255),
+    -> ManagerId int,
+    -> DateOfJoining date,
+    -> City varchar(255),
+    -> primary(EmpId)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(EmpId)
+)' at line 7
+mysql> create table EmployeeDetails(
+    -> EmpId int,
+    -> FullName varchar(255),
+    -> ManagerId int,
+    -> DateOfJoining date,
+    -> City varchar(255),
+    -> primary key (EmpId)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table EmployeeSalary(
+    -> EmpId int,
+    -> Project varchar(255),
+    -> Salary varchar(50),
+    -> Variable ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 5
+mysql> create table EmployeeSalary(
+    -> EmpId int,
+    -> Project varchar(255),
+    -> Salary int,
+    -> Variable int,
+    -> Primary Key(EmpId) references EmployeeDetails(EmpId)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references EmployeeDetails(EmpId)
+)' at line 6
+mysql> create table EmployeeSalary(
+    -> EmpId int,
+    -> Project varchar(255),
+    -> Salary int,
+    -> Variable int,
+    -> Primary Key(EmpId),
+    -> Foreign Key(EmpId) references EmployeeDetails(EmpId)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc EmployeeDetails;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| EmpId         | int          | NO   | PRI | NULL    |       |
+| FullName      | varchar(255) | YES  |     | NULL    |       |
+| ManagerId     | int          | YES  |     | NULL    |       |
+| DateOfJoining | date         | YES  |     | NULL    |       |
+| City          | varchar(255) | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc EmployeeSalary;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| EmpId    | int          | NO   | PRI | NULL    |       |
+| Project  | varchar(255) | YES  |     | NULL    |       |
+| Salary   | int          | YES  |     | NULL    |       |
+| Variable | int          | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into EmployeeDetails(EmpId,FullName,ManagerId,DateOfJoining,City)
+    -> values(121,'John Snow',321,01/31/2019,'Toronto')
+    -> values(321,'Walter White',986,01/30/2020,'California');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values(321,'Walter White',986,01/30/2020,'California')' at line 3
+mysql> insert into EmployeeDetails(EmpId,FullName,ManagerId,DateOfJoining,City)
+    -> values(121,'John Snow',321,01/31/2019,'Toronto'),
+    -> values(321,'Walter White',986,01/30/2020,'California');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values(321,'Walter White',986,01/30/2020,'California')' at line 3
+mysql> insert into EmployeeDetails(EmpId,FullName,ManagerId,DateOfJoining,City)
+    -> values(121,'John Snow',321,01/31/2019,'Toronto'),
+    -> (321,'Walter White',986,01/30/2020,'California');
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into EmployeeDetails(EmpId,FullName,ManagerId,DateOfJoining,City)
+    -> values(421,'Kuldeep Rana',876,27/11/2021,'New Delhi');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into EmployeeSalary(EmpId,Project,Salary,Variable)
+    -> values(121,'P1',8000,500),
+    -> (321,'P2',10000,1000),
+    -> (421,'P1',12000,0);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from EmployeeDetails;
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   121 | John Snow    |       321 | 0000-00-00    | Toronto    |
+|   321 | Walter White |       986 | 0000-00-00    | California |
+|   421 | Kuldeep Rana |       876 | 0000-00-00    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> Alter Table EmployeeDetails
+    -> Alter Column DateOfJoining date(DD-MM-YYYY);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'date(DD-MM-YYYY)' at line 2
+mysql> UPDATE Customers
+    -> SET ContactName = 'Alfred Schmidt', City= 'Frankfurt'
+    -> WHERE CustomerID = 1;
+ERROR 1146 (42S02): Table 'learn.customers' doesn't exist
+mysql> UPDATE EmployeeDetails
+    -> SET DateOfJoining = '2019-31-01'
+    -> WHERE EmpId = 121;
+ERROR 1292 (22007): Incorrect date value: '2019-31-01' for column 'DateOfJoining' at row 1
+mysql> SET DateOfJoining = '2019-01-31';
+ERROR 1193 (HY000): Unknown system variable 'DateOfJoining'
+mysql> UPDATE EmployeeDetails
+    -> SET DateOfJoining = '2019-01-31'
+    -> WHERE EmpId = 121;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from EmployeeDetails;
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   121 | John Snow    |       321 | 2019-01-31    | Toronto    |
+|   321 | Walter White |       986 | 0000-00-00    | California |
+|   421 | Kuldeep Rana |       876 | 0000-00-00    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> UPDATE EmployeeDetails
+    -> SET DateOfJoining = '2020-01-30'
+    -> WHERE EmpId = 321;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE EmployeeDetails
+    -> SET DateOfJoining = '2021-27-11'
+    -> WHERE EmpId = 421;
+ERROR 1292 (22007): Incorrect date value: '2021-27-11' for column 'DateOfJoining' at row 1
+mysql> UPDATE EmployeeDetails
+    -> SET DateOfJoining = '2021-27-11'
+    -> WHERE EmpId = 421;
+ERROR 1292 (22007): Incorrect date value: '2021-27-11' for column 'DateOfJoining' at row 1
+mysql> UPDATE EmployeeDetails
+    -> SET DateOfJoining = '2021-27-11'
+    -> WHERE EmpId = 421;
+ERROR 1292 (22007): Incorrect date value: '2021-27-11' for column 'DateOfJoining' at row 1
+mysql> UPDATE EmployeeDetails(DateOfJoining)
+    -> SET DateOfJoining = '2021-27-11'
+    -> WHERE EmpId = 421;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(DateOfJoining)
+SET DateOfJoining = '2021-27-11'
+WHERE EmpId = 421' at line 1
+mysql> UPDATE EmployeeDetails
+    -> SET DateOfJoining = 2021-27-11
+    -> WHERE EmpId = 421;
+ERROR 1292 (22007): Incorrect date value: '1983' for column 'DateOfJoining' at row 1
+mysql> UPDATE EmployeeDetails
+    -> SET DateOfJoining = '2021/27/11'
+    -> WHERE EmpId = 421;
+ERROR 1292 (22007): Incorrect date value: '2021/27/11' for column 'DateOfJoining' at row 1
+mysql> select * from EmployeeDetails;
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   121 | John Snow    |       321 | 2019-01-31    | Toronto    |
+|   321 | Walter White |       986 | 2020-01-30    | California |
+|   421 | Kuldeep Rana |       876 | 0000-00-00    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> UPDATE EmployeeDetails
+    -> SET DateOfJoining = '2019-01-31'
+    -> WHERE EmpId = 421;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE EmployeeDetails
+    -> SET DateOfJoining = '2021-11-27'
+    -> WHERE EmpId = 421;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from EmployeeDetails;
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   121 | John Snow    |       321 | 2019-01-31    | Toronto    |
+|   321 | Walter White |       986 | 2020-01-30    | California |
+|   421 | Kuldeep Rana |       876 | 2021-11-27    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from EmployeeSalary;
++-------+---------+--------+----------+
+| EmpId | Project | Salary | Variable |
++-------+---------+--------+----------+
+|   121 | P1      |   8000 |      500 |
+|   321 | P2      |  10000 |     1000 |
+|   421 | P1      |  12000 |        0 |
++-------+---------+--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from EmployeeDetails where EmpId not in (select EmpId from EmployeeSalary);
+Empty set (0.00 sec)
+
+mysql> select * from EmployeeDetails where EmpId not in (select EmpId from EmployeeSalary);
+Empty set (0.00 sec)
+
+mysql> select * from EmployeeDetails
+    -> where EmpId not in (
+    -> select EmpId from EmployeeSalary
+    -> );
+Empty set (0.00 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_learn |
++-----------------+
+| books           |
+| employee        |
+| employeedetails |
+| employeesalary  |
+| students        |
+| user            |
++-----------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from employee;
++--------+---------------+------------+--------+------------+
+| emp_id | emp_name      | role       | salary | experiance |
++--------+---------------+------------+--------+------------+
+|      1 | Rohit Jadhav  | Java Dev   |  25000 |          3 |
+|      2 | Deepak Behera | .NET Dev   |  35000 |          4 |
+|      3 | Deepak Behera | Java Dev   |  30000 |          3 |
+|      4 | Vinay Jadhav  | Full Stack |  90000 |          5 |
+|      5 | Umesh Jadhav  | Nodejs     |  75000 |          3 |
+|      6 | Amol Pawar    | Reactjs    |  55000 |          4 |
+|      7 | Abhay Rajput  | Python     |  20000 |          1 |
++--------+---------------+------------+--------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from employeedtails;
+ERROR 1146 (42S02): Table 'learn.employeedtails' doesn't exist
+mysql> select * from employeedetails;
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   121 | John Snow    |       321 | 2019-01-31    | Toronto    |
+|   321 | Walter White |       986 | 2020-01-30    | California |
+|   421 | Kuldeep Rana |       876 | 2021-11-27    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employeesalary;
++-------+---------+--------+----------+
+| EmpId | Project | Salary | Variable |
++-------+---------+--------+----------+
+|   121 | P1      |   8000 |      500 |
+|   321 | P2      |  10000 |     1000 |
+|   421 | P1      |  12000 |        0 |
++-------+---------+--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> insert into employeesalary(empid,project,salary,variable)
+    -> values(233,'p4',12000,100);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`learn`.`employeesalary`, CONSTRAINT `employeesalary_ibfk_1` FOREIGN KEY (`EmpId`) REFERENCES `employeedetails` (`EmpId`))
+mysql> select * from employeedetails where empid not in(select empid from employeesalary where poject='p3');
+ERROR 1054 (42S22): Unknown column 'poject' in 'where clause'
+mysql> select * from employeedetails where empid not in(select empid from employeesalary where project='p3');
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   121 | John Snow    |       321 | 2019-01-31    | Toronto    |
+|   321 | Walter White |       986 | 2020-01-30    | California |
+|   421 | Kuldeep Rana |       876 | 2021-11-27    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employeedetails where empid  in(select empid from employeesalary where project='p3');
+Empty set (0.00 sec)
+
+mysql> select * from employeedetails where empid  in(select empid from employeesalary where project='p2');
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   321 | Walter White |       986 | 2020-01-30    | California |
++-------+--------------+-----------+---------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from employeedetails where empid not in(select empid from employeesalary where project='p3');
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   121 | John Snow    |       321 | 2019-01-31    | Toronto    |
+|   321 | Walter White |       986 | 2020-01-30    | California |
+|   421 | Kuldeep Rana |       876 | 2021-11-27    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM (
+    -> SELECT ROW_NUMBER() OVER (ORDER BY SALARY DESC) AS rownumber,Salary
+    -> FROM Employee )
+    -> AS foo
+    -> WHERE rownumber = 5 ;
++-----------+--------+
+| rownumber | Salary |
++-----------+--------+
+|         5 |  30000 |
++-----------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from Employee;
++--------+---------------+------------+--------+------------+
+| emp_id | emp_name      | role       | salary | experiance |
++--------+---------------+------------+--------+------------+
+|      1 | Rohit Jadhav  | Java Dev   |  25000 |          3 |
+|      2 | Deepak Behera | .NET Dev   |  35000 |          4 |
+|      3 | Deepak Behera | Java Dev   |  30000 |          3 |
+|      4 | Vinay Jadhav  | Full Stack |  90000 |          5 |
+|      5 | Umesh Jadhav  | Nodejs     |  75000 |          3 |
+|      6 | Amol Pawar    | Reactjs    |  55000 |          4 |
+|      7 | Abhay Rajput  | Python     |  20000 |          1 |
++--------+---------------+------------+--------+------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM (
+    -> SELECT emp_id() OVER (ORDER BY salary DESC),salary
+    -> from employee
+    -> )
+    -> as foo
+    -> where (ORDER BY salary DESC) = 3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'OVER (ORDER BY salary DESC),salary
+from employee
+)
+as foo
+where (ORDER BY salary' at line 2
+mysql> SELECT * FROM (
+    -> SELECT emp_id() OVER (ORDER BY salary DESC)as '5th Highest',salary
+    -> from Employee
+    -> )
+    -> as foo
+    -> where '5th Highest'=5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'OVER (ORDER BY salary DESC)as '5th Highest',salary
+from Employee
+)
+as foo
+where ' at line 2
+mysql> SELECT * FROM (
+    -> SELECT emp_id() OVER (ORDER BY salary DESC)as HighestSalaryNumber,salary
+    -> from Employee
+    -> )
+    -> as foo
+    -> where HighestSalaryNumber=5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'OVER (ORDER BY salary DESC)as HighestSalaryNumber,salary
+from Employee
+)
+as foo
+' at line 2
+mysql> SELECT * FROM (
+    -> SELECT ROW_NUMBER() OVER (ORDER BY salary DESC)as HighestSalaryNumber,salary
+    -> from Employee
+    -> )
+    -> as foo
+    -> where HighestSalaryNumber=5;
++---------------------+--------+
+| HighestSalaryNumber | salary |
++---------------------+--------+
+|                   5 |  30000 |
++---------------------+--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM (
+    -> SELECT ROW_NUMBER() OVER (ORDER BY salary DESC)as Highest_Salary_Number,Salary
+    -> from Employee
+    -> )
+    -> as asd
+    -> Where Highest_Salary_Number = 3;
++-----------------------+--------+
+| Highest_Salary_Number | Salary |
++-----------------------+--------+
+|                     3 |  55000 |
++-----------------------+--------+
+1 row in set (0.00 sec)
+
+mysql> Select * from Employee ORDER By Salary Desc Limit 2,1;
++--------+------------+---------+--------+------------+
+| emp_id | emp_name   | role    | salary | experiance |
++--------+------------+---------+--------+------------+
+|      6 | Amol Pawar | Reactjs |  55000 |          4 |
++--------+------------+---------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> Select * from EmployeeDetails;
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   121 | John Snow    |       321 | 2019-01-31    | Toronto    |
+|   321 | Walter White |       986 | 2020-01-30    | California |
+|   421 | Kuldeep Rana |       876 | 2021-11-27    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> Select * from EmployeeSalary where empid not in(Select project from EmployeeSalary);
++-------+---------+--------+----------+
+| EmpId | Project | Salary | Variable |
++-------+---------+--------+----------+
+|   121 | P1      |   8000 |      500 |
+|   321 | P2      |  10000 |     1000 |
+|   421 | P1      |  12000 |        0 |
++-------+---------+--------+----------+
+3 rows in set, 9 warnings (0.00 sec)
+
+mysql> Select * from EmployeeDetails where empid not in(Select project from EmployeeSalary);
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   121 | John Snow    |       321 | 2019-01-31    | Toronto    |
+|   321 | Walter White |       986 | 2020-01-30    | California |
+|   421 | Kuldeep Rana |       876 | 2021-11-27    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+3 rows in set, 9 warnings (0.00 sec)
+
+mysql> Select * from EmployeeDetails where empid in(Select project from EmployeeSalary);
+Empty set (0.00 sec)
+
+mysql> select * from employeedetails where empid not in(select empid from employeesalary where project='p2' and project='p1');
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   121 | John Snow    |       321 | 2019-01-31    | Toronto    |
+|   321 | Walter White |       986 | 2020-01-30    | California |
+|   421 | Kuldeep Rana |       876 | 2021-11-27    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employeedetails where empid not (select empid from employeesalary where project='p2' and project='p1');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(select empid from employeesalary where project='p2' and project='p1')' at line 1
+mysql> select * from employeedetails where empid not in(select empid from employeesalary where project='p2' and project='p1');
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   121 | John Snow    |       321 | 2019-01-31    | Toronto    |
+|   321 | Walter White |       986 | 2020-01-30    | California |
+|   421 | Kuldeep Rana |       876 | 2021-11-27    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employeeSalary where project not in(select empid from EmployeeDetails);
++-------+---------+--------+----------+
+| EmpId | Project | Salary | Variable |
++-------+---------+--------+----------+
+|   121 | P1      |   8000 |      500 |
+|   321 | P2      |  10000 |     1000 |
+|   421 | P1      |  12000 |        0 |
++-------+---------+--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employeedetails where empid not in(select empid from employeesalary where project='p1');
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   321 | Walter White |       986 | 2020-01-30    | California |
++-------+--------------+-----------+---------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from employeedetails where empid not in(select empid from employeesalary where project='p1'or project='p2');
+Empty set (0.00 sec)
+
+mysql> select * from EmployeeDetails;
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   121 | John Snow    |       321 | 2019-01-31    | Toronto    |
+|   321 | Walter White |       986 | 2020-01-30    | California |
+|   421 | Kuldeep Rana |       876 | 2021-11-27    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from EmployeeSalary;
++-------+---------+--------+----------+
+| EmpId | Project | Salary | Variable |
++-------+---------+--------+----------+
+|   121 | P1      |   8000 |      500 |
+|   321 | P2      |  10000 |     1000 |
+|   421 | P1      |  12000 |        0 |
++-------+---------+--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select FullName, ManagerId, DateOfJoining, City from EmployeeDetails;
++--------------+-----------+---------------+------------+
+| FullName     | ManagerId | DateOfJoining | City       |
++--------------+-----------+---------------+------------+
+| John Snow    |       321 | 2019-01-31    | Toronto    |
+| Walter White |       986 | 2020-01-30    | California |
+| Kuldeep Rana |       876 | 2021-11-27    | New Delhi  |
++--------------+-----------+---------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from EmployeeDetails Where DataOfJoining = 2020-01-01;
+ERROR 1054 (42S22): Unknown column 'DataOfJoining' in 'where clause'
+mysql> SELECT *
+    -> FROM employees
+    -> WHERE to_char(hire_date, 'mon')='jan';
+ERROR 1146 (42S02): Table 'learn.employees' doesn't exist
+mysql> SELECT * From EmployeeDetails Where to_int(DataOfJoining,'year')=2020;
+ERROR 1305 (42000): FUNCTION learn.to_int does not exist
+mysql> SELECT * From EmployeeDetails Where to_char(DataOfJoining,'year')=2020;
+ERROR 1305 (42000): FUNCTION learn.to_char does not exist
+mysql> SELECT * From EmployeeDetails Where to_char(DataOfJoining,'year')='2020';
+ERROR 1305 (42000): FUNCTION learn.to_char does not exist
+mysql> SELECT * From EmployeeDetails Where to_char(DataOfJoining,'year')='jan';
+ERROR 1305 (42000): FUNCTION learn.to_char does not exist
+mysql> SELECT * From EmployeeDetails Where to_char(DataOfJoining,'mon')='jan';
+ERROR 1305 (42000): FUNCTION learn.to_char does not exist
+mysql> select * from EmployeeDetails Where DataOfJoining = ('2020');
+ERROR 1054 (42S22): Unknown column 'DataOfJoining' in 'where clause'
+mysql> select * from EmployeeDetails Where DataOfJoining < ('2020-01-01');
+ERROR 1054 (42S22): Unknown column 'DataOfJoining' in 'where clause'
+mysql> select * from EmployeeDetails Where DateOfJoining = ('2020');
+ERROR 1525 (HY000): Incorrect DATE value: '2020'
+mysql> select * from EmployeeDetails Where DateOfJoining < ('2020-01-01');
++-------+-----------+-----------+---------------+---------+
+| EmpId | FullName  | ManagerId | DateOfJoining | City    |
++-------+-----------+-----------+---------------+---------+
+|   121 | John Snow |       321 | 2019-01-31    | Toronto |
++-------+-----------+-----------+---------------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from EmployeeDetails Where DateOfJoining > ('2020-01-01');
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   321 | Walter White |       986 | 2020-01-30    | California |
+|   421 | Kuldeep Rana |       876 | 2021-11-27    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from EmployeeDetails Where DateOfJoining > ('2020');
+ERROR 1525 (HY000): Incorrect DATE value: '2020'
+mysql> select * from EmployeeDetails Where DateOfJoining >= ('2020-01-01');
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   321 | Walter White |       986 | 2020-01-30    | California |
+|   421 | Kuldeep Rana |       876 | 2021-11-27    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from EmployeeDetails Where DateOfJoining Like '2020%'
+    -> ;
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   321 | Walter White |       986 | 2020-01-30    | California |
++-------+--------------+-----------+---------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from EmployeeDetails Where DateOfJoining Like '2020%';
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   321 | Walter White |       986 | 2020-01-30    | California |
++-------+--------------+-----------+---------------+------------+
+1 row in set (0.00 sec)
+
+mysql> Select EmpId,FullName,Salary From EmployeeDetails,EmployeeSalary ;
+ERROR 1052 (23000): Column 'EmpId' in field list is ambiguous
+mysql> Select FullName,Salary From EmployeeDetails , EmployeeSalary Where EmployeeDetails.EmpId= EmployeeSalary.EmpId ;
++--------------+--------+
+| FullName     | Salary |
++--------------+--------+
+| John Snow    |   8000 |
+| Walter White |  10000 |
+| Kuldeep Rana |  12000 |
++--------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> Select EmpId,FullName,Salary From EmployeeDetails , EmployeeSalary Where EmployeeDetails.EmpId= EmployeeSalary.EmpId ;
+ERROR 1052 (23000): Column 'EmpId' in field list is ambiguous
+mysql> Select EmployeeDetails.EmpId,EmployeeSalary.EmpId,FullName,Salary From EmployeeDetails , EmployeeSalary Where EmployeeDetails.EmpId= EmployeeSalary.EmpId ;
++-------+-------+--------------+--------+
+| EmpId | EmpId | FullName     | Salary |
++-------+-------+--------------+--------+
+|   121 |   121 | John Snow    |   8000 |
+|   321 |   321 | Walter White |  10000 |
+|   421 |   421 | Kuldeep Rana |  12000 |
++-------+-------+--------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> Select EmployeeDetails.EmpId,FullName,Salary From EmployeeDetails , EmployeeSalary Where EmployeeDetails.EmpId= EmployeeSalary.EmpId ;
++-------+--------------+--------+
+| EmpId | FullName     | Salary |
++-------+--------------+--------+
+|   121 | John Snow    |   8000 |
+|   321 | Walter White |  10000 |
+|   421 | Kuldeep Rana |  12000 |
++-------+--------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employeedetails where empId in(select empId from employeesalary where salary=?);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?)' at line 1
+mysql> select * from employeedetails where empId in(select empId from employeesalary having salary);
+ERROR 1054 (42S22): Unknown column 'salary' in 'having clause'
+mysql> select * from employeedetails where empid having (select empid from employeesalary);
+ERROR 1242 (21000): Subquery returns more than 1 row
+mysql> select * from employeedetails where empid having (select empid from employeesalary) where salary>5000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where salary>5000)' at line 1
+mysql> select * from employeedetails where empid having (select empid from employeesalary where salary>5000);
+ERROR 1242 (21000): Subquery returns more than 1 row
+mysql> select * from employeedetails where empid having (select empid from employeesalary where salary>10000);
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   121 | John Snow    |       321 | 2019-01-31    | Toronto    |
+|   321 | Walter White |       986 | 2020-01-30    | California |
+|   421 | Kuldeep Rana |       876 | 2021-11-27    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employeedetails where empid having (select empid from employeesalary where salary>=10000);
+ERROR 1242 (21000): Subquery returns more than 1 row
+mysql> select * from employeedetails where empid having (select empid from employeesalary where salary>15000);
+Empty set (0.00 sec)
+
+mysql> select * from employeedetails where empid having (select empid from employeesalary where salary>12000);
+Empty set (0.00 sec)
+
+mysql> select * from employeedetails where empid having (select empid from employeesalary where salary>10000);
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   121 | John Snow    |       321 | 2019-01-31    | Toronto    |
+|   321 | Walter White |       986 | 2020-01-30    | California |
+|   421 | Kuldeep Rana |       876 | 2021-11-27    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employeedetails  having epmid in (select empid from employeesalary where salary>10000);
+ERROR 1054 (42S22): Unknown column 'epmid' in 'IN/ALL/ANY subquery'
+mysql> select * from employeedetails  having empid in (select empid from employeesalary where salary>10000);
++-------+--------------+-----------+---------------+-----------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City      |
++-------+--------------+-----------+---------------+-----------+
+|   421 | Kuldeep Rana |       876 | 2021-11-27    | New Delhi |
++-------+--------------+-----------+---------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from employeedetails  having salary in (select salary from employeesalary);
+ERROR 1054 (42S22): Unknown column 'salary' in 'IN/ALL/ANY subquery'
+mysql> select * from employeedetails  having  (select salary from employeesalary);
+ERROR 1242 (21000): Subquery returns more than 1 row
+mysql> select fullname from employeedetails  having  (select salary from employeesalary);
+ERROR 1242 (21000): Subquery returns more than 1 row
+mysql> select * from employeedetails where empid in(select empid from employeesalary having salary);
+ERROR 1054 (42S22): Unknown column 'salary' in 'having clause'
+mysql> select * from employeedetails where empid in(select empid from employeesalary having salary in employeesalary);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'employeesalary)' at line 1
+mysql> select * from employeedetails where empid in(select empid from employeesalary having salary);
+ERROR 1054 (42S22): Unknown column 'salary' in 'having clause'
+mysql> select * from employeedetails where empid in(select empid from employeesalary contains salary);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'salary)' at line 1
+mysql> Select * from EmployeeDetails Where Exists (Select * from EmployeeSalary Where EmployeeDetails.EmpId=EmployeeSalary.EmpId);
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   121 | John Snow    |       321 | 2019-01-31    | Toronto    |
+|   321 | Walter White |       986 | 2020-01-30    | California |
+|   421 | Kuldeep Rana |       876 | 2021-11-27    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> Select Project,Count(EmpId) As Employee_Project From EmployeeSalary Group By Project Order By Employee_Project Desc;
++---------+------------------+
+| Project | Employee_Project |
++---------+------------------+
+| P1      |                2 |
+| P2      |                1 |
++---------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> Select COUNT(*) from EmployeeSalary;
++----------+
+| COUNT(*) |
++----------+
+|        3 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> Select COUNT(*) from EmployeeSalary Group By Salary;
++----------+
+| COUNT(*) |
++----------+
+|        1 |
+|        1 |
+|        1 |
++----------+
+3 rows in set (0.00 sec)
+
+mysql> Select COUNT(*) from EmployeeSalary Group By Project;
++----------+
+| COUNT(*) |
++----------+
+|        2 |
+|        1 |
++----------+
+2 rows in set (0.00 sec)
+
+mysql> Select *, COUNT(*) from EmployeeSalary Group By Project;
++-------+---------+--------+----------+----------+
+| EmpId | Project | Salary | Variable | COUNT(*) |
++-------+---------+--------+----------+----------+
+|   121 | P1      |   8000 |      500 |        2 |
+|   321 | P2      |  10000 |     1000 |        1 |
++-------+---------+--------+----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> Select Project, COUNT(*) from EmployeeSalary Group By Project;
++---------+----------+
+| Project | COUNT(*) |
++---------+----------+
+| P1      |        2 |
+| P2      |        1 |
++---------+----------+
+2 rows in set (0.00 sec)
+
+mysql> Select Project, COUNT(*) As Employee_Project from EmployeeSalary Group By Project;
++---------+------------------+
+| Project | Employee_Project |
++---------+------------------+
+| P1      |                2 |
+| P2      |                1 |
++---------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> Select * from EmployeeSalary;
++-------+---------+--------+----------+
+| EmpId | Project | Salary | Variable |
++-------+---------+--------+----------+
+|   121 | P1      |   8000 |      500 |
+|   321 | P2      |  10000 |     1000 |
+|   421 | P1      |  12000 |        0 |
++-------+---------+--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> Select * from EmployeeDetails;;
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   121 | John Snow    |       321 | 2019-01-31    | Toronto    |
+|   321 | Walter White |       986 | 2020-01-30    | California |
+|   421 | Kuldeep Rana |       876 | 2021-11-27    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+3 rows in set (0.00 sec)
+
+ERROR:
+No query specified
+
+mysql> Select * from EmployeeDetails;
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   121 | John Snow    |       321 | 2019-01-31    | Toronto    |
+|   321 | Walter White |       986 | 2020-01-30    | California |
+|   421 | Kuldeep Rana |       876 | 2021-11-27    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into EmployeeDetails(EmpId,FullName, ManagerId,DateOfJoining, City) Values(234,'Tejas',385,'2022-09-13','Mumbai';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into EmployeeDetails(EmpId,FullName, ManagerId,DateOfJoining, City) Values(234,'Tejas',385,2022-09-13,'Mumbai';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into EmployeeDetails(EmpId,FullName, ManagerId,DateOfJoining, City) Values(234,'Tejas',385,2022-09-13,'Mumbai';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into EmployeeDetails(
+    -> EmpId,FullName, ManagerId,DateOfJoining, City)
+    -> values(234,'Tejas',385,2022-09-13,'Mumbai';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 3
+mysql> insert into EmployeeDetails(
+    -> EmpId,FullName, ManagerId,DateOfJoining, City)
+    -> values(234,'Tejas',385,2022-09-13,'Mumbai');
+ERROR 1292 (22007): Incorrect date value: '2000' for column 'DateOfJoining' at row 1
+mysql> insert into EmployeeDetails(
+    -> EmpId,FullName, ManagerId,DateOfJoining, City)
+    -> values(234,'Tejas',385,'2022-09-13','Mumbai');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> Select * from EmployeeDetails;
++-------+--------------+-----------+---------------+------------+
+| EmpId | FullName     | ManagerId | DateOfJoining | City       |
++-------+--------------+-----------+---------------+------------+
+|   121 | John Snow    |       321 | 2019-01-31    | Toronto    |
+|   234 | Tejas        |       385 | 2022-09-13    | Mumbai     |
+|   321 | Walter White |       986 | 2020-01-30    | California |
+|   421 | Kuldeep Rana |       876 | 2021-11-27    | New Delhi  |
++-------+--------------+-----------+---------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> Select * from EmployeeSalary;
++-------+---------+--------+----------+
+| EmpId | Project | Salary | Variable |
++-------+---------+--------+----------+
+|   121 | P1      |   8000 |      500 |
+|   321 | P2      |  10000 |     1000 |
+|   421 | P1      |  12000 |        0 |
++-------+---------+--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> Select EmployeeDetails.FullName, EmployeeSalary.Salary from EmployeeSalary,EmployeeSalary Where EmployeeSalary;^Z;
+ERROR 1066 (42000): Not unique table/alias: 'EmployeeSalary'
+ERROR:
+No query specified
+
+mysql> Select EmployeeDetails.FullName, EmployeeSalary.Salary from EmployeeSalary,EmployeeSalary Where EmployeeDetails.EmpId = EmployeeSalary.EmpId;
+ERROR 1066 (42000): Not unique table/alias: 'EmployeeSalary'
+mysql> Select EmployeeDetails.FullName, EmployeeSalary.Salary from EmployeeSalary LEFT JOIN EmployeeSalary Where EmployeeDetails.EmpId = EmployeeSalary.EmpId;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Where EmployeeDetails.EmpId = EmployeeSalary.EmpId' at line 1
+mysql> Select EmployeeDetails.FullName, EmployeeSalary.Salary from EmployeeSalary LEFT JOIN EmployeeSalary ON EmployeeDetails.EmpId = EmployeeSalary.EmpId;
+ERROR 1066 (42000): Not unique table/alias: 'EmployeeSalary'
+mysql> Select EmployeeDetails.FullName, EmployeeSalary.Salary from EmployeeDetails LEFT JOIN EmployeeSalary Where EmployeeDetails.EmpId = EmployeeSalary.EmpId;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Where EmployeeDetails.EmpId = EmployeeSalary.EmpId' at line 1
+mysql> Select EmployeeDetails.FullName, EmployeeSalary.Salary from EmployeeDetails LEFT JOIN EmployeeSalary ON EmployeeDetails.EmpId = EmployeeSalary.EmpId;
++--------------+--------+
+| FullName     | Salary |
++--------------+--------+
+| John Snow    |   8000 |
+| Tejas        |   NULL |
+| Walter White |  10000 |
+| Kuldeep Rana |  12000 |
++--------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> Select EmployeeDetails.FullName from EmployeeDetails Inner JOIN EmployeeSalary ON EmployeeDetails.EmpId = EmployeeDetails.ManagerId;
+Empty set (0.00 sec)
+
+mysql> Select EmployeeDetails.FullName from EmployeeDetails Inner JOIN EmployeeDetails ON EmployeeDetails.EmpId = EmployeeDetails.ManagerId;
+ERROR 1066 (42000): Not unique table/alias: 'EmployeeDetails'
+mysql> Select EmployeeDetails.FullName from EmployeeDetails Inner JOIN EmployeeDetails ON EmployeeDetails.EmpId = EmployeeDetails.ManagerId;
+ERROR 1066 (42000): Not unique table/alias: 'EmployeeDetails'
+mysql> Select FullName from EmployeeDetails Inner Join EmployeeDetails On EmpId=ManagerId;
+ERROR 1066 (42000): Not unique table/alias: 'EmployeeDetails'
+mysql> Select FullName from EmployeeDetails Inner Join EmployeeDetails On EmpId=ManagerId;
+ERROR 1066 (42000): Not unique table/alias: 'EmployeeDetails'
+mysql> Select FullName from EmployeeDetails
+    -> Inner Join EmployeeDetails
+    -> On EmpId=ManagerId;
+ERROR 1066 (42000): Not unique table/alias: 'EmployeeDetails'
+mysql> Select EmployeeDetails.FullName from EmployeeDetails
+    -> Inner Join EmployeeDetails
+    -> On EmployeeDetails.EmpId= EmployeeDetails.ManagerId;
+ERROR 1066 (42000): Not unique table/alias: 'EmployeeDetails'
+mysql> SELECT E.EmpFN
+    ->
+    -> FROM [sampleDB].[dbo].[EmployeeDetails] E
+    ->
+    -> INNER JOIN [sampleDB].[dbo].[EmployeeDetails] M
+    ->
+    -> ON E.EmpiD = M.ManagrID;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[sampleDB].[dbo].[EmployeeDetails] E
+
+INNER JOIN [sampleDB].[dbo].[EmployeeDetai' at line 3
+mysql> SELECT E.FullName From EmployeeDetails as E
+    -> INNER JOIN EmployeeDetails as M
+    -> ON E.EmpId = M.ManagerId;
++--------------+
+| FullName     |
++--------------+
+| Walter White |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT EmployeeDetails.FullName From EmployeeDetails
+    -> INNER JOIN EmployeeDetails
+    -> ON EmpId = ManagerId
+    -> ;
+ERROR 1066 (42000): Not unique table/alias: 'EmployeeDetails'
+mysql> Select *, COUNT(*) From EmployeeDetails;
++-------+-----------+-----------+---------------+---------+----------+
+| EmpId | FullName  | ManagerId | DateOfJoining | City    | COUNT(*) |
++-------+-----------+-----------+---------------+---------+----------+
+|   121 | John Snow |       321 | 2019-01-31    | Toronto |        4 |
++-------+-----------+-----------+---------------+---------+----------+
+1 row in set (0.00 sec)
+
+mysql> Select *, COUNT(*) From EmployeeSalary (Group By *) as A>1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(Group By *) as A>1' at line 1
+mysql> Select project, COUNT(*) From EmployeeSalary (Group By project) as A>1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(Group By project) as A>1' at line 1
+mysql> Select project, COUNT(*) as Duplicate From EmployeeSalary (Group By project) as A Where Duplicate > 1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(Group By project) as A Where Duplicate > 1' at line 1
+mysql> Select project, COUNT(*) as Duplicate From EmployeeSalary Group By project Where Duplicate > 1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Where Duplicate > 1' at line 1
+mysql> Select project, COUNT(*) as Duplicate From EmployeeSalary Group By project Having Duplicate > 1;
++---------+-----------+
+| project | Duplicate |
++---------+-----------+
+| P1      |         2 |
++---------+-----------+
+1 row in set (0.00 sec)
+
+mysql> Select project, COUNT(*) as Duplicate From EmployeeSalary Group By project Where Duplicate > 1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Where Duplicate > 1' at line 1
+mysql> Select project, COUNT(*) as Duplicate From EmployeeSalary Group By project Duplicate > 1;  > 1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Duplicate > 1' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '> 1' at line 1
+mysql> SELECT * FROM (SELECT *,ROW_NUMBER() OVER (Order By EmpId) as xyz From EmployeeSalary) Having xyx%2=1;
+ERROR 1248 (42000): Every derived table must have its own alias
+mysql> SELECT * FROM (SELECT *,ROW_NUMBER() OVER (Order By EmpId) as xyz From EmployeeSalary) as abc Having xyx%2=1;
+ERROR 1054 (42S22): Unknown column 'xyx' in 'having clause'
+mysql> SELECT * FROM (SELECT *,ROW_NUMBER() OVER (Order By EmpId) as xyz From EmployeeSalary) as abc Having xyz%2=1;
++-------+---------+--------+----------+-----+
+| EmpId | Project | Salary | Variable | xyz |
++-------+---------+--------+----------+-----+
+|   121 | P1      |   8000 |      500 |   1 |
+|   421 | P1      |  12000 |        0 |   3 |
++-------+---------+--------+----------+-----+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM (SELECT *,ROW_NUMBER() OVER (Order By EmpId) as xyz From EmployeeSalary) as abc Having abc.xyz%2=1;
++-------+---------+--------+----------+-----+
+| EmpId | Project | Salary | Variable | xyz |
++-------+---------+--------+----------+-----+
+|   121 | P1      |   8000 |      500 |   1 |
+|   421 | P1      |  12000 |        0 |   3 |
++-------+---------+--------+----------+-----+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM (SELECT *,ROW_NUMBER() OVER (Order By EmpId) as xyz From EmployeeSalary) as abc Where xyz%2=1;
++-------+---------+--------+----------+-----+
+| EmpId | Project | Salary | Variable | xyz |
++-------+---------+--------+----------+-----+
+|   121 | P1      |   8000 |      500 |   1 |
+|   421 | P1      |  12000 |        0 |   3 |
++-------+---------+--------+----------+-----+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM (SELECT *,ROW_NUMBER() OVER (Order By EmpId) as xyz From EmployeeSalary) as abc Where xyz%2=0;
++-------+---------+--------+----------+-----+
+| EmpId | Project | Salary | Variable | xyz |
++-------+---------+--------+----------+-----+
+|   321 | P2      |  10000 |     1000 |   2 |
++-------+---------+--------+----------+-----+
+1 row in set (0.00 sec)
+
+mysql> SELECT EmpId,Project,Salary FROM (SELECT *,ROW_NUMBER() OVER (Order By EmpId) as xyz From EmployeeSalary) as abc Where xyz%2=0;
++-------+---------+--------+
+| EmpId | Project | Salary |
++-------+---------+--------+
+|   321 | P2      |  10000 |
++-------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT EmpId,Project,Salary FROM (SELECT *,ROW_NUMBER() OVER (Order By EmpId) as xyz From EmployeeSalary) as abc Where abc.xyz%2=1;
++-------+---------+--------+
+| EmpId | Project | Salary |
++-------+---------+--------+
+|   121 | P1      |   8000 |
+|   421 | P1      |  12000 |
++-------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql>
